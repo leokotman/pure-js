@@ -1,0 +1,33 @@
+/* line 1, style.scss */
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; }
+  /* line 3, style.scss */
+  body .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+  /* line 9, style.scss */
+  body .main .goods-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+    /* line 14, style.scss */
+    body .main .goods-list .goods_item {
+      border: 1px solid #000;
+      border-radius: .5rem;
+      text-align: center;
+      min-width: 10rem; }
+      /* line 20, style.scss */
+      body .main .goods-list .goods_item .add_to_cart {
+        width: 60%;
+        border-radius: .3rem;
+        font-family: inherit; }
+
+/*# sourceMappingURL=style.css.map */
