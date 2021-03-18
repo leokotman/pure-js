@@ -11,9 +11,9 @@ let goods = [
 ];
 
 let count = 0;
-let itemsCount = document.querySelector(".items_count").innerHTML;
+let itemsCount = document.querySelector(".items_count");
 let addCount = () => {
-  return (itemsCount = count);
+  return (itemsCount.innerHTML = count);
 };
 let addToCartButton = `<button class="add_to_cart" type="button">Add to Cart</button>`;
 
