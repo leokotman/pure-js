@@ -11,15 +11,19 @@ let goods = [
 ];
 
 let count = 0;
+let itemsCount = document.querySelector(".items_count").innerHTML;
 let addCount = () => {
-  return (document.querySelector(".items_count").innerHTML = count);
+  return (itemsCount = count);
 };
 let addToCartButton = `<button class="add_to_cart" type="button">Add to Cart</button>`;
 
+const titleH3Constructor = (Title) => `<h3>${Title}</h3>`;
+const itemPriceParConstructor = (Price) => `<p>${Price}</p>`;
+
 const renderGoodsItem = (title = "Item", price = 0) => {
   //упростил return визуально
-  let itemTitle = `<h3>${title}</h3>`;
-  let itemPrice = `<p>${price}</p>`;
+  let itemTitle = titleH3Constructor(title);
+  let itemPrice = itemPriceParConstructor(price);
 
   return `<div class="goods_item">
         ${itemTitle}
