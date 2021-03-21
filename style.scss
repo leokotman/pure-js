@@ -1,23 +1,18 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-
-    .header{
+    .header {
         display: flex;
         justify-content: space-between;
         background: #FAFAFA;
         padding: 2rem 4.5rem;
         margin: 0;
-
-
         .header_menu a {
             color: black;
         }
-
         .cart-button {
             background-color: #fff;
             border: 1px solid #F7941E;
             border-radius: 5px;
-
             svg {
                 width: 1rem;
                 height: 1rem;
@@ -25,25 +20,27 @@ body {
             }
         }
     }
-    
-    .main{      
+    .main {
         background-color: #F1F1F2;
         padding: 1rem;
-
+        .sum {
+            .sumH2 {
+                display: inline-block;
+                margin-right: 1rem;
+            }
+        }
         .goods-list {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 2rem;
             margin-bottom: 1rem;
-
             .goods_item {
                 background-color: #fff;
                 border: 1px solid #000;
                 border-radius: .5rem;
                 text-align: center;
                 min-width: 10rem;
-    
                 .add_to_cart {
                     width: 60%;
                     border-radius: .3rem;
@@ -53,14 +50,12 @@ body {
                 }
             }
         }
-
         .promo {
             background: #F7941E;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             padding: 1rem;
-
             .promo_btn {
                 border-radius: 5px;
                 text-transform: uppercase;
@@ -69,5 +64,5 @@ body {
                 padding: .5rem;
             }
         }
-    }   
+    }
 }

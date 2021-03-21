@@ -2,12 +2,13 @@ class GoodsItem {
     constructor(title, price) {
         this.title = title;
         this.price = price;
+        this.btn = `<button class="add_to_cart" type="button">Add to Cart</button>`;
     };
     render() {
         return `<div class="goods_item">
         <h3>${this.title}</h3>
         <p>${this.price}</p>
-        <button class="add_to_cart" type="button">Add to Cart</button>
+        ${this.btn}
         </div>`;
     };
 }
@@ -15,7 +16,23 @@ class GoodsItem {
 class GoodsList {
     constructor() {
         this.goods = [];
-    }
+    };
+    _showSum() {
+        let sumPlace = `<div class='sum'></div>`;
+        document
+            .querySelector(".main")
+            .insertAdjacentHTML("afterbegin", sumPlace);
+        let productsSum = 0;
+        this.goods.forEach((item) => {
+            productsSum += item.price;
+        });
+        document
+            .querySelector(".sum")
+            .insertAdjacentHTML(
+                "afterbegin",
+                `<h2 class="sumH2">Сумма товаров:</h2><span>${productsSum}</span>`
+            );
+    };
     fetchGoods() {
         this.goods = [{
                 title: "Shirt",
@@ -61,17 +78,18 @@ class GoodsList {
             let goodItem = new GoodsItem(good.title, good.price);
             listHtml += goodItem.render();
         });
-        document.querySelector(".goods-list").insertAdjacentHTML('afterbegin', listHtml);
+        document.querySelector(".goods-list").insertAdjacentHTML("afterbegin", listHtml);
+        this._showSum();
     };
 }
 
 class Cart {
     constructor() {
-        this.count = 0
+        this.count = 0;
     };
     _addCount() {
         let itemsCount = document.querySelector(".items_count");
-        return itemsCount.innerHTML = this.count;
+        return (itemsCount.innerHTML = this.count);
     };
     _addToCartBtnListener(btn) {
         btn.addEventListener("click", () => {
@@ -80,11 +98,13 @@ class Cart {
         });
     };
     renderCartQuantity() {
-        document.querySelectorAll(".add_to_cart").forEach(this._addToCartBtnListener.bind(this));
+        document
+            .querySelectorAll(".add_to_cart")
+            .forEach(this._addToCartBtnListener.bind(this));
         this._addCount();
     };
     //new methods
-    renderCartSum() {
+    _renderCartSum() {
         //{item price * quantity}
         //show sum
     };
@@ -98,15 +118,18 @@ class Cart {
 //элемент корзины (товар в корзине)
 class ItemInCart {
     constructor(title, price, quantity) {
-        this.title = title
-        this.price = price
-        this.quantity = quantity
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
     };
     changeQuantity() {
         //btns + & –
     };
     removeFromCart() {
         //btn 'delete item'
+    };
+    showItem() {
+        //link to this product
     };
 }
 
