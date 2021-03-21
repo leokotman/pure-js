@@ -1,22 +1,3 @@
-let count = 0;
-let itemsCount = document.querySelector(".items_count");
-let addCount = () => {
-    return (itemsCount.innerHTML = count);
-};
-
-//методы объектов
-
-const addToCartBtnClicker = (btn) => {
-    btn.addEventListener("click", () => {
-        count++;
-        addCount();
-    });
-};
-const renderCartQuantity = () => {
-    addCount();
-    document.querySelectorAll(".add_to_cart").forEach(addToCartBtnClicker);
-};
-
 class GoodsItem {
     constructor(title, price) {
         this.title = title;
@@ -84,6 +65,30 @@ class GoodsList {
     }
 }
 
+class Cart {
+    constructor() {
+        this.count = 0
+    }
+    _addCount() {
+        let itemsCount = document.querySelector(".items_count");
+        return itemsCount.innerHTML = this.count;
+    };
+    _addToCartBtnListener(btn) {
+        btn.addEventListener("click", () => {
+            this.count++;
+            this._addCount();
+        });
+    }
+    renderCartQuantity() {
+        document.querySelectorAll(".add_to_cart").forEach(this._addToCartBtnListener.bind(this));
+        this._addCount();
+    }
+}
+
+//Создание объектов и вызов методов
 let list = new GoodsList();
 list.fetchGoods();
 list.render();
+
+let cart = new Cart();
+cart.renderCartQuantity();
