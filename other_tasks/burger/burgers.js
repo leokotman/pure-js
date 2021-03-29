@@ -2,9 +2,9 @@
 
 class Burger {
     constructor(size, stuffing) {
-        this.size = size
-        this.stuffing = stuffing
-        this.topping = ''
+        this.size = size;
+        this.sftuffing = stuffing; //можно сделать как массив [...stuffing]
+        this.topping = '';
     }
     addTopping(topping) {
         this.topping += topping;
@@ -108,3 +108,16 @@ smallCheeseBurger.renderPriceCallories();
 let bigPotatoBurger = new Burger('big', 'potato');
 bigPotatoBurger.renderBurgerHtml();
 bigPotatoBurger.renderPriceCallories();
+
+//данные / config можно вынести в объект (размеры с ценой, каллориями)
+//const sizes = {
+//     small: {
+//         price: 50,
+//         calories: 25,
+//     },
+// }...
+//у класса сделать свойство как [] и туда добавлять через методы элементы из данных
+//this.fillings = [];
+// addFilling(filling){
+//     this.fillings.push(filling);
+// }
