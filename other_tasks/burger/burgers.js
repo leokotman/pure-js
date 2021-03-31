@@ -1,123 +1,97 @@
 "use strict";
 
+const sizes = {
+    SMALL:{
+        price: 50,
+        callories: 20
+    },
+    BIG:{
+        price: 100,
+        callories: 40
+    }
+};
+const fillings = {
+    CHEESE:{
+        price: 10,
+        callories: 20,
+    },      
+    SALAD: {
+        price: 20,
+        callories: 5
+    },
+    POTATO: {
+        price: 15,
+        callories: 10
+    }
+};
+const toppings = {
+    SPICE: {
+        price: 15,
+        callories: 0
+    },
+    SAUCE: {
+        price: 20,
+        callories: 5
+    }
+};
+
 class Burger {
-    constructor(size, stuffing) {
+    constructor(size, price, callories) {
         this.size = size;
-        this.sftuffing = stuffing; //можно сделать как массив [...stuffing]
-        this.topping = '';
+        this.price = price;
+        this.callories = callories;
+        this.fillings = [];
+        this.toppings = [];
     }
+
+    addFilling(filling) {
+        this.fillings.push(filling);
+    }
+
     addTopping(topping) {
-        this.topping += topping;
+        this.toppings.push(topping);
     }
+
     removeTopping(topping) {
-        this.topping -= topping;
+        this.toppings = this.toppings.filter(top => top !== topping);
     }
-    getToppings(topping) {} // Получить список добавок 
+
+    getToppings(topping) {
+        document.write(this.toppings);
+    }
     getSize() {} // Узнать размер гамбургера 
-    getStuffing() {} // Узнать начинку гамбургера 
+    getFilling() {
+        document.write(this.fillings);
+    }
     _calculatePrice() {
-        let price = 0;
-        switch (this.size) {
-            case 'small':
-                price += 50;
-                break;
-            case 'big':
-                price += 100;
-                break;
-            default:
-                break;
-        }
-        switch (this.stuffing) {
-            case 'cheese':
-                price += 10;
-                break;
-            case 'salad':
-                price += 20;
-                break;
-            case 'potato':
-                price += 15;
-                break;
-            default:
-                break;
-        }
-        switch (this.topping) {
-            case 'spicy':
-                price += 15;
-                break;
-            case 'mayo':
-                price += 20;
-                break;
-            default:
-                break;
-        }
-        return price;
+        const ingredients = [...this.fillings, ...this.toppings];
+        let sumPrice = ingredients.reduce((acc, ingr) => acc += ingr.price, 0);
+        return this.price + sumPrice;
     }
     _calculateCalories() {
-        let callories = 0;
-        switch (this.size) {
-            case 'small':
-                callories += 20;
-                break;
-            case 'big':
-                callories += 40;
-                break;
-            default:
-                break;
-        }
-        switch (this.stuffing) {
-            case 'cheese':
-                callories += 20;
-                break;
-            case 'salad':
-                callories += 5;
-                break;
-            case 'potato':
-                callories += 10;
-                break;
-            default:
-                break;
-        }
-        switch (this.topping) {
-            case 'spicy':
-                callories += 0;
-                break;
-            case 'mayo':
-                callories += 5;
-                break;
-            default:
-                break;
-        }
-        return callories;
+        const ingredients = [...this.fillings, ...this.toppings];
+        let sumCallories = ingredients.reduce((acc, ingr) => acc += ingr.callories, 0)
+        return this.callories + sumCallories;
     }
     renderBurgerHtml() {
-        let burgerHtml = `<h2>${this.size}</h2><span>${this.stuffing}</span><br><span>${this.topping}</span>`;
+        let burgerHtml = `<h2>${this.size}</h2><span>${this.fillings.join()}</span><br><span>${this.toppings.join()}</span>`;
         document.querySelector('.burger').insertAdjacentHTML('afterbegin', burgerHtml);
     }
     renderPriceCallories() {
         document.querySelector('.burger').insertAdjacentHTML('afterbegin', `<br>Price: ${this._calculatePrice()}, Callories: ${this._calculateCalories()}`);
     }
-}
+};
 
-let smallCheeseBurger = new Burger('small', 'cheese');
-alert(`You ordered ${smallCheeseBurger.size} burger with ${smallCheeseBurger.stuffing}, topping: ${smallCheeseBurger.topping}`);
-smallCheeseBurger.addTopping('mayo');
-alert(`You changed your topping to: ${smallCheeseBurger.topping}`);
+let smallCheeseBurger = new Burger('SMALL', sizes.SMALL.price, sizes.SMALL.callories);
+smallCheeseBurger.addFilling(fillings.CHEESE);
+smallCheeseBurger.addTopping(toppings.SAUCE);
+
+//вопрос: добавляя начинки в предыдущих действиях они попали как объект в массив начинок. и этот объект не имеет изначальных названий, поэтому в этом alert они не выводятся. как сохранить названия объектов изначальных? в отладчике увидел, что остаются только свойство, а название становится индексом 0
+alert(`You ordered ${smallCheeseBurger.size} burger with ${smallCheeseBurger.fillings}, topping: ${smallCheeseBurger.toppings}`);
+
 smallCheeseBurger.renderBurgerHtml();
 smallCheeseBurger.renderPriceCallories();
 
-let bigPotatoBurger = new Burger('big', 'potato');
+let bigPotatoBurger = new Burger('BIG', sizes.BIG.price, sizes.BIG.callories);
 bigPotatoBurger.renderBurgerHtml();
 bigPotatoBurger.renderPriceCallories();
-
-//данные / config можно вынести в объект (размеры с ценой, каллориями)
-//const sizes = {
-//     small: {
-//         price: 50,
-//         calories: 25,
-//     },
-// }...
-//у класса сделать свойство как [] и туда добавлять через методы элементы из данных
-//this.fillings = [];
-// addFilling(filling){
-//     this.fillings.push(filling);
-// }
