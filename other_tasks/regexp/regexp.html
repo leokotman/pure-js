@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Regexp</title>
+</head>
+<body>
+	<div class="big_text"></div>
+	<div class="submit_form">
+		<form action="#">
+			<label for="form">Submit form</label>
+			<input required type="text" placeholder="Your name" name="name" pattern="^[a-z ,.'-]+$" title='Your name'>
+			<input required type="tel" placeholder="+7(000)000-0000" name="phone number" pattern="\+7\(\d{3}\)\d{3}-\d{4}" title="+7(000)000-0000">
+			<input required type="email" placeholder="Your email" name="email" title='mymail@mail.ru, my.mail@mail.ru, my-mail@mail.ru' pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+			<textarea placeholder="Your message"></textarea>
+			<input type="submit" name="button">
+		</form>
+	</div>
+	<script src="regexp.js"></script>
+</body>
+</html>
