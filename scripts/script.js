@@ -19,8 +19,8 @@ let addCount = () => {
 };
 let addToCartButton = `<button class="add_to_cart" type="button">Add to Cart</button>`;
 
-const titleH3Constructor = (Title) => `<h3>${Title}</h3>`;
-const itemPriceParConstructor = (Price) => `<p>${Price}</p>`;
+const titleH3Constructor = (title) => `<h3>${title}</h3>`;
+const itemPriceParConstructor = (price) => `<p>${price}</p>`;
 
 const renderGoodsItem = (title = "Item", price = 0) => {
     //упростил return визуально
